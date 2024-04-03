@@ -3,7 +3,6 @@ import "./App.css";
 
 const TravelDestination = () => {
   const [currentContinent, setCurrentContinent] = useState("");
-  const [destinationList, setDestinationList] = useState(false);
   const [currentDestination, setCurrentDestination] = useState("");
   const [results, setResults] = useState(false);
 
@@ -19,20 +18,14 @@ const TravelDestination = () => {
   const handleContinentChange = () => {
     const value = event.target.value;
     setCurrentContinent(value);
-    console.log(currentContinent);
-    // setDestinationList(true);
-    setDestinationList(value !== "");
   };
 
   const handleDestinationChange = () => {
     setCurrentDestination(event.target.value);
-    // console.log(currentDestination)
   };
 
   const handleSubmitButton = () => {
     setResults(true);
-    setDestinationList(!destinationList);
-    // setDestinationList(false);
   };
 
   return (
@@ -49,31 +42,32 @@ const TravelDestination = () => {
               </option>
             ))}
           </select>
+
+          <br />
+          <br />
+
+          {currentContinent && (
+            <div>
+              <label>Select Your Preferred Destination:</label>
+              <br />
+              {questions.options[currentContinent].map((place) => (
+                <label key={place}>
+                  <input
+                    type="radio"
+                    value={place}
+                    onChange={handleDestinationChange}
+                    name="country"
+                  />
+                  {place}
+                  <br />
+                </label>
+              ))}
+              <br />
+              <button onClick={handleSubmitButton}>Submit</button>
+            </div>
+          )}
         </>
       )}
-      <br />
-      <br />
-
-      {destinationList && (
-        <div>
-          <label>Select Your Preferred Destination:</label>
-          <br />
-          {questions.options[currentContinent].map((place) => (
-            <label key={place}>
-              <input
-                type="radio"
-                value={place}
-                onChange={handleDestinationChange}
-                name="country"
-              />
-              {place}
-              <br />
-            </label>
-          ))}
-        </div>
-      )}
-      <br />
-      {!results && <button onClick={handleSubmitButton}>Submit</button>}
 
       {results && (
         <div>
@@ -136,6 +130,7 @@ const MusicPreference = () => {
             <div>
               <label>Select your Preferred Subgenre:</label>
               <br />
+        
               {questions.options[currentSelectedGenre].map((genre) => (
                 <label key={genre}>
                   <input
@@ -148,6 +143,7 @@ const MusicPreference = () => {
                   <br />
                 </label>
               ))}
+              <br/>
             </div>
           )}
           <button onClick={handleButtonClick}>Submit</button>
