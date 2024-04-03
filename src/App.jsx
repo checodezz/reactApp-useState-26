@@ -3,7 +3,6 @@ import "./App.css";
 
 const TravelDestination = () => {
   const [currentContinent, setCurrentContinent] = useState("");
-  // const [destinationList, setDestinationList] = useState(false);
   const [currentDestination, setCurrentDestination] = useState("");
   const [results, setResults] = useState(false);
 
@@ -19,9 +18,6 @@ const TravelDestination = () => {
   const handleContinentChange = () => {
     const value = event.target.value;
     setCurrentContinent(value);
-    console.log(currentContinent);
-    // setDestinationList(true);
-    // setDestinationList(value !== "");
   };
 
   const handleDestinationChange = () => {
@@ -30,8 +26,6 @@ const TravelDestination = () => {
 
   const handleSubmitButton = () => {
     setResults(true);
-    // setDestinationList(!destinationList);
-    // setDestinationList(false);
   };
 
   return (
